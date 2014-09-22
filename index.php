@@ -1,4 +1,4 @@
-<?
+<?php
 define('IN_PHP_SLOW_READER', true);
 require 'config.inc.php';
 
