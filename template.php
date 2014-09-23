@@ -46,6 +46,19 @@ a {
     top: 0;
 }
 
+.repetition-badge {
+    padding: 3px 7px;
+    border-radius: 14px;
+    margin-left: 24px;
+    background: #ED591A;
+    color: white;
+}
+
+.active .repetition-badge {
+    background: white;
+    color: #ED591A;
+}
+
 .branding {
     position: absolute;
     top: 10px;
@@ -109,7 +122,9 @@ header {
     width: 30%;
     background: #FFF;
 }
-
+.frame-code-container {
+    padding-bottom: 60px;
+}
 .frame {
     padding: 14px;
     background: #F3F3F3;
@@ -442,7 +457,8 @@ pre.prettyprint a, code.prettyprint a {
                         <span class="frame-index"><?php echo $k; ?>.</span>
                         <span class="frame-class"><?php echo $traces['time']; ?>
                             <span><?php echo $traces['title'] ?></span></span>
-                        <span class="frame-function"></span>
+                        <span
+                            class="frame-function"><?php echo $traces['repetitions'] > 1 ? '<span class="repetition-badge">' . $traces['repetitions'] . '</span>' : '' ?></span>
                     </div>
 
       <span class="frame-file">

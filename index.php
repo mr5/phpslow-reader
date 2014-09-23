@@ -27,5 +27,5 @@ function dd()
 
 require 'PHPSlow.php';
 $phpslow = new PHPSlow($config);
-$tracesArr = $phpslow->getTraces($_GET['server'] ? $_GET['server'] : 'localhost');
+$tracesArr = $phpslow->getTraces(isset($_GET['server']) ? $_GET['server'] : 'localhost');
 include 'template.php';

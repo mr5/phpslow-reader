@@ -15,6 +15,7 @@ class PHPSlow
     private $execCache = array();
     private $linesLimit = 100;
     private $config = array();
+    private $repetitions = array();
 
     /**
      * @param array $config config array, for example:
@@ -106,9 +107,18 @@ class PHPSlow
         $logs = $this->getFileLastLines($serverName, $logFileName, $this->linesLimit);
         $logs = preg_split('/\n{2,}/', $logs);
         $tracesArr = array();
-        foreach ($logs as $log) {
+        $trace_key = 0;
+
+        foreach ($logs as $_k => $log) {
             $log = trim($log);
             if (!$log || !preg_match('/^\[\d+-[a-zA-Z]+-\d+ \d+:\d+:\d+\]/i', $log)) {
+                continue;
+            }
+            $log = trim($log);
+            $_md5 = md5(preg_replace('/\[[\w]{18}\]/i', '', substr($log, strpos($log, "\n") + 1)));
+            if (isset($this->repetitions[$_md5])) {
+                $repetition_key = $this->repetitions[$_md5];
+                $tracesArr[$repetition_key]['repetitions'] += 1;
                 continue;
             }
             $log = preg_split('/\n+/', $log);
@@ -119,6 +129,8 @@ class PHPSlow
             $traces = array();
 
             $title = array_shift($log);
+            $traces['repetitions'] = 1;
+
             $traces['time'] = date('Y-m-d H:i:s', strtotime(trim(substr($title, 0, 22), '[]')));
             $traces['title'] = substr($title, 22);
             $traces['script'] = str_replace('script_filename = ', '', array_shift($log));
@@ -152,8 +164,9 @@ class PHPSlow
                 $traces['traces'][] = $trace;
                 unset($trace);
             }
-
-            $tracesArr[] = $traces;
+            $_trace_key = $trace_key++;
+            $this->repetitions[$_md5] = $_trace_key;
+            $tracesArr[$_trace_key] = $traces;
             unset($traces);
         }
         $tracesArr = array_reverse($tracesArr);
