@@ -435,11 +435,11 @@ pre.prettyprint a, code.prettyprint a {
         <div class="frames-container cf ">
             <?php $code_fragments = ''; ?>
             <?php foreach ($tracesArr['traces'] as $k => $traces): ?>
-                <? $_active = $k == 0 ? 'active' : ''; ?>
+                <?php $_active = $k == 0 ? 'active' : ''; ?>
 
-                <div class="frame <?php echo $_active; ?>" id="frame-line-<? echo $k; ?>">
+                <div class="frame <?php echo $_active; ?>" id="frame-line-<?php echo $k; ?>">
                     <div class="frame-method-info">
-                        <span class="frame-index"><? echo $k; ?>.</span>
+                        <span class="frame-index"><?php echo $k; ?>.</span>
                         <span class="frame-class"><?php echo $traces['time']; ?>
                             <span><?php echo $traces['title'] ?></span></span>
                         <span class="frame-function"></span>
