@@ -21,12 +21,12 @@ $config =
             ),
             'Server1' => array(
                 'host' => '192.168.2.38',
-                'file' => '/tmp/php-slow.log'
+                'file' => $_log_file
             ),
             'ServerB' => array(
                 'host' => '192.168.2.39',
-                'file' => '/tmp/php-slow.log'
+                'file' => $_log_file
             )
         ),
-        'linesLimit' => 100,
+        'linesLimit' => 1000,
     );
