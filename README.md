@@ -10,7 +10,7 @@ git clone https://github.com/mr5/phpslow-reader
 ```
 For almost environment, the php-fpm progresses running with a non-administrators user(such as `www`), that means
 `phpslow-reader` cannot read files that not owned by `www` user. in order to resolve it, you can run it with 
-`php -S localhost:8000` command and nginx proxy.
+`php -S localhost:8000` command with root user and nginx proxy.
 
 ### configuration file
 ```shell
