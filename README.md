@@ -16,4 +16,25 @@ For almost environment, the php-fpm progresses running with a non-administrators
 ```shell
 cp config.sample.php config.inc.php
 ```
-
+Open `config.inc.php`, and offer  information of your servers, and make sure the server that  `phpslow-reader` hosted has
+SSH permission to access all other servers:
+```php
+$config =
+    array(
+        'servers' => array(
+            'localhost' => array(
+                // In this server, 'host' field is unset, so it can be recognized as 'localhost'.
+                'file' => '/var/log/php/php-slow.log'
+            ),
+            'Server1' => array(
+                'host' => '192.168.2.38',
+                'file' => $_log_file
+            ),
+            'ServerB' => array(
+                'host' => '192.168.2.39',
+                'file' => $_log_file
+            )
+        ),
+        'linesLimit' => 1000,
+    );
+```
