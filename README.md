@@ -24,15 +24,15 @@ $config =
         'servers' => array(
             'localhost' => array(
                 // In this server, 'host' field is unset, so it can be recognized as 'localhost'.
-                'file' => '/var/log/php/php-slow.log'
+                'file' => '/var/log/php/php-slow.log'   // where your php-slow.log file saved in `localhost`
             ),
             'Server1' => array(
                 'host' => '192.168.2.38',
-                'file' => $_log_file
+                'file' => $_log_file    // where your php-slow.log file saved in this server
             ),
             'ServerB' => array(
                 'host' => '192.168.2.39',
-                'file' => $_log_file
+                'file' => $_log_file    // where your php-slow.log file saved in this server
             )
         ),
         'linesLimit' => 1000,
