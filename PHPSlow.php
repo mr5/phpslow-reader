@@ -58,7 +58,7 @@ class PHPSlow
         if (!$server) {
             return '';
         }
-        $command = "tail -n +{$start} {$filename}";
+        $command = "sed -n '{$start},{$end}p' {$filename}";
         if (isset($server['host'])) {
             $command = "ssh root@{$server['host']} \"{$command}\"";
         }
@@ -69,7 +69,7 @@ class PHPSlow
             exec($command, $outputs);
             $this->execCache[$cacheKey] = $outputs;
         }
-        array_splice($outputs, $end - $start - 1);
+//        array_splice($outputs, $end - $start - 1);
         return implode("\n", $outputs);
     }
 
