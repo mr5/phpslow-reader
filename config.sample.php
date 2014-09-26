@@ -21,7 +21,9 @@ $config =
             ),
             'Server1' => array(
                 'host' => '192.168.2.38',
-                'file' => $_log_file
+                'file' => $_log_file,
+                // mark code_server as 'localhost' means that direct read php codes locally .
+                'code_server' => 'localhost'
             ),
             'ServerB' => array(
                 'host' => '192.168.2.39',
