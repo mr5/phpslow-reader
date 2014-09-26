@@ -101,6 +101,9 @@ class PHPSlow
      */
     public function getTraces($serverName)
     {
+        if(!isset($this->config['servers'][$serverName])) {
+            exit("Server {$serverName} invalid.");
+        }
         $logFileName = $this->config['servers'][$serverName]['file'];
 
         $logs = $this->getFileLastLines($serverName, $logFileName, $this->linesLimit);
